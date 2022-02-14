@@ -5,6 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Code Journal</title>
   <link rel="icon" href="images/favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;500;700&display=swap" rel="stylesheet">
   <link
     rel="stylesheet"
     crossorigin="anonymous"
@@ -15,27 +18,38 @@
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-  <header>
-
+  <header class="purple-bg">
+    <div class="container">
+      <div class="row">
+        <div class="column-full column-half">
+          <h2 class="font-300 tb-margin-dot5">Code Journal</h2>
+        </div>
+      </div>
+    </div>
   </header>
   <main>
     <div class="container" data-view="entry-form">
       <form>
-        <h1>New Entry</h1>
+        <h1 class="column-full">New Entry</h1>
         <div class="row">
           <div class="column-full column-half">
             <img src="images/placeholder-image-square.jpg">
           </div>
           <div class="column-full column-half">
-            <h3>Title</h3>
-            <input type="text">
-            <h3>Photo URL</h3>
-            <input type="text">
+            <label class="no-top-margin font-700">Title</label>
+            <input class="gray-border" type="text">
+            <label class="font-700">Photo URL</label>
+            <input class="gray-border" type="text">
           </div>
         </div>
         <div class="row">
-          <h3>Notes</h3>
-          <input type="text-area">
+          <div class="column-full">
+            <label class="font-700">Notes</label>
+            <textarea class="gray-border" > </textarea>
+          </div>
+          <div class="column-full text-right">
+            <button class="purple-bg save-button">SAVE</button>
+          </div>
         </div>
       </form>
     </div>
