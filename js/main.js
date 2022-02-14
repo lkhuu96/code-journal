@@ -14,6 +14,7 @@ document.addEventListener('submit', function (event) {
   event.preventDefault();
   saveEntry();
   nextEntryId++;
+  $img.setAttribute('src', 'images/placeholder-image-square.jpg');
   $form.reset();
 });
 
