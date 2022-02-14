@@ -16,6 +16,7 @@ document.addEventListener('submit', function (event) {
   entryObject.photoUrl = $form.elements.photo.value;
   entryObject.notes = $form.elements.notes.value;
   entryObject.nextEntryId = nextEntryId;
+  nextEntryId++;
   entryArray.push(entryObject);
 
   $form.reset();
