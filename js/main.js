@@ -17,10 +17,19 @@ document.addEventListener('submit', function (event) {
 
 var $dataView = document.querySelector('ul');
 
-document.addEventListener('DOMContentLoaded', function (event) {
-  for (var i = 0; i < data.entries.length; i++) {
-    var dataEntry = data.entries[i];
-    $dataView.appendChild(createNewElement(dataEntry));
+document.addEventListener('DOMContentLoaded', addEntriesToPage);
+
+var $anchorEntryForm = document.querySelector("a[href='#entry-form']");
+var $entryForm = document.querySelector("div[data-view='entry-form']");
+var $entries = document.querySelector('#entries');
+var $save = document.querySelector('#save');
+document.addEventListener('click', function (event) {
+  if (event.target === $anchorEntryForm) {
+    $entryForm.classList.remove('hidden');
+    $entries.classList.add('hidden');
+  } else if (event.target === $save) {
+    $entryForm.classList.add('hidden');
+    $entries.classList.remove('hidden');
   }
 });
 
@@ -60,4 +69,11 @@ function createNewElement(entry) {
   createLi.setAttribute('class', 'b-margin');
 
   return createLi;
+}
+
+function addEntriesToPage(event) {
+  for (var i = 0; i < data.entries.length; i++) {
+    var dataEntry = data.entries[i];
+    $dataView.appendChild(createNewElement(dataEntry));
+  }
 }
