@@ -14,8 +14,15 @@ document.addEventListener('submit', function (event) {
   $img.setAttribute('src', 'images/placeholder-image-square.jpg');
   $form.reset();
 });
+
 var $dataView = document.querySelector('ul');
-$dataView.prepend(createNewElement());
+
+document.addEventListener('DOMContentLoaded', function (event) {
+  for (var i = 0; i < data.entries.length; i++) {
+    var dataEntry = data.entries[i];
+    $dataView.appendChild(createNewElement(dataEntry));
+  }
+});
 
 function saveEntry() {
   var entryObject = {};
