@@ -30,6 +30,8 @@ document.addEventListener('click', function (event) {
   } else if (event.target === $save) {
     $entryForm.classList.add('hidden');
     $entries.classList.remove('hidden');
+    data.entries.unshift(saveEntry());
+    $dataView.prepend(createNewElement(data.entries[0]));
   }
 });
 
