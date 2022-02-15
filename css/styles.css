@@ -37,8 +37,8 @@ ul {
   padding: 0;
 }
 
-h2 {
-  margin-top: 0;
+p {
+  white-space: pre-line;
 }
 
 .font-200 {
