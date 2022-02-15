@@ -8,7 +8,7 @@ var data = {
 };
 
 var previousDataJSON = localStorage.getItem('code-journal-local-storage');
-if (previousDataJSON.entries !== null) {
+if (previousDataJSON !== null) {
   data = JSON.parse(previousDataJSON);
 }
 
