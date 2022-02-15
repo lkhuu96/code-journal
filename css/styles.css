@@ -23,7 +23,7 @@ input:focus {
 img {
   object-fit: cover;
   width: 100%;
-  max-height: 400px;
+  max-height: 350px;
 }
 
 label {
@@ -40,10 +40,6 @@ label {
   font-weight: 700;
 }
 
-.notes {
-  height: 10rem;
-}
-
 .purple-bg {
   background: rgb(86, 43, 129);
   color: white;
@@ -53,12 +49,16 @@ label {
   text-align: right;
 }
 
-.no-top-margin {
-  margin-top: 0;
+.tb-margin-dot7 {
+  margin: 0.7rem 0;
 }
 
-.tb-margin-dot5 {
-  margin: 0.5rem 0;
+.b-margin {
+  margin-bottom: 1rem;
+}
+
+.no-top-margin {
+  margin-top: 0;
 }
 
 .text-boxes {
@@ -73,6 +73,7 @@ label {
 .save-button {
   border: none;
   border-radius: 5px;
-  padding: 0.5rem 1rem;
+  padding: 0.5rem 1.2rem;
+  font-size: 1rem;
   margin: 1rem 0;
 }
