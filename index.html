@@ -29,35 +29,74 @@
     </div>
   </header>
   <main>
-    <div class="container" data-view="entry-form">
-      <form>
-        <h1 class="column-full">New Entry</h1>
-        <div class="row">
-          <div class="column-half b-margin">
-            <img src="images/placeholder-image-square.jpg">
+    <div class="container">
+      <div data-view="entry-form">
+        <form>
+          <h1 class="column-full">New Entry</h1>
+          <div class="row">
+            <div class="column-half b-margin">
+              <img src="images/placeholder-image-square.jpg">
+            </div>
+            <div class="column-half">
+              <label class="no-top-margin font-700" for="title">Title</label>
+              <input class="text-boxes" type="text" name="title" required="required">
+              <label class="font-700" for="photo">Photo URL</label>
+              <input id="photo" class="text-boxes" type="text" name="photo" required="required">
+            </div>
           </div>
-          <div class="column-half">
-            <label class="no-top-margin font-700" for="title">Title</label>
-            <input class="text-boxes" type="text" name="title" required="required">
-            <label class="font-700" for="photo">Photo URL</label>
-            <input id="photo" class="text-boxes" type="text" name="photo" required="required">
+          <div class="row">
+            <div class="column-full">
+              <label class="font-700" for="notes">Notes</label>
+              <textarea class="text-boxes" name="notes" required="required"></textarea>
+            </div>
+            <div class="column-full text-right">
+              <button class="purple-bg save-button" type="submit">SAVE</button>
+            </div>
           </div>
-        </div>
-        <div class="row">
-          <div class="column-full">
-            <label class="font-700" for="notes">Notes</label>
-            <textarea class="text-boxes" name="notes" required="required"></textarea>
-          </div>
-          <div class="column-full text-right">
-            <button class="purple-bg save-button" type="submit">SAVE</button>
-          </div>
-        </div>
-      </form>
+        </form>
+      </div>
+      <div data-view="entries">
+        <ul>
+          <li>
+            <div class="row">
+              <div class="column-half b-margin">
+                <img src="images/placeholder-image-square.jpg">
+              </div>
+              <div class="column-half">
+                <h2>Title</h2>
+                <p>
+                  Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consequuntur quos repudiandae unde quaerat quae.
+                Unde
+                saepe hic quibusdam, veniam laborum enim nesciunt at blanditiis beatae consectetur voluptate est aliquid rem!
+                Ipsam ea quis ducimus! Nisi mollitia impedit cupiditate odio veritatis excepturi nihil sapiente labore
+                necessitatibus animi, consequatur sequi inventore nostrum dicta libero, quibusdam illum recusandae
+                consequuntur cum
+                vitae tempore quas.
+                </p>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="row">
+              <div class="column-half">
+                <img src="images/placeholder-image-square.jpg">
+              </div>
+              <div class="column-half">
+                <h2>Title 2</h2>
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consequuntur quos repudiandae unde quaerat quae.
+                Unde
+                saepe hic quibusdam, veniam laborum enim nesciunt at blanditiis beatae consectetur voluptate est aliquid rem!
+                Ipsam ea quis ducimus! Nisi mollitia impedit cupiditate odio veritatis excepturi nihil sapiente labore
+                necessitatibus animi, consequatur sequi inventore nostrum dicta libero, quibusdam illum recusandae
+                consequuntur
+                cum
+                vitae tempore quas.
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
     </div>
-    <div data-view="entries">
-      <ul>
-
-      </ul>
     </div>
   </main>
   <script src="js/data.js"></script>
