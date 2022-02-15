@@ -18,6 +18,16 @@ document.addEventListener('submit', function (event) {
   $form.reset();
 });
 
+var previousEntryArrayJSON = localStorage.getItem('code-journal-local-storage');
+if (previousEntryArrayJSON !== null) {
+  entryArray = JSON.parse(previousEntryArrayJSON);
+}
+
+window.addEventListener('beforeunload', function (events) {
+  var entryArrayJSON = JSON.stringify(entryArray);
+  localStorage.setItem('code-journal-local-storage', entryArrayJSON);
+});
+
 function saveEntry() {
   var entryObject = {};
   entryObject.title = $form.elements.title.value;
