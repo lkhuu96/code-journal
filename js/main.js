@@ -3,9 +3,6 @@
 
 var $photoURL = document.querySelector('#photo');
 var $img = document.querySelector('img');
-if (data.entries.length > 1) {
-  data.nextEntryId = data.entries[0].entryId + 1;
-}
 $photoURL.addEventListener('input', function (event) {
   $img.setAttribute('src', $photoURL.value);
 });
