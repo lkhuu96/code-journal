@@ -12,6 +12,9 @@ document.addEventListener('submit', function (event) {
   event.preventDefault();
   data.entries.unshift(saveEntry());
   $img.setAttribute('src', 'images/placeholder-image-square.jpg');
+  $entryForm.classList.add('hidden');
+  $entries.classList.remove('hidden');
+  $dataView.prepend(createNewElement(data.entries[0]));
   $form.reset();
 });
 
@@ -22,16 +25,10 @@ document.addEventListener('DOMContentLoaded', addEntriesToPage);
 var $anchorEntryForm = document.querySelector("a[href='#entry-form']");
 var $entryForm = document.querySelector("div[data-view='entry-form']");
 var $entries = document.querySelector('#entries');
-var $save = document.querySelector('#save');
 document.addEventListener('click', function (event) {
   if (event.target === $anchorEntryForm) {
     $entryForm.classList.remove('hidden');
     $entries.classList.add('hidden');
-  } else if (event.target === $save) {
-    $entryForm.classList.add('hidden');
-    $entries.classList.remove('hidden');
-    data.entries.unshift(saveEntry());
-    $dataView.prepend(createNewElement(data.entries[0]));
   }
 });
 
