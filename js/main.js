@@ -12,8 +12,7 @@ $photoURL.addEventListener('input', function (event) {
 var $form = document.querySelector('form');
 document.addEventListener('submit', function (event) {
   event.preventDefault();
-  saveEntry();
-  nextEntryId++;
+  entryArray.unshift(saveEntry());
   $img.setAttribute('src', 'images/placeholder-image-square.jpg');
   $form.reset();
 });
@@ -33,6 +32,9 @@ function saveEntry() {
   entryObject.title = $form.elements.title.value;
   entryObject.photoUrl = $form.elements.photo.value;
   entryObject.notes = $form.elements.notes.value;
+  if (entryArray.length > 0) {
+    nextEntryId = (entryArray[0].nextEntryId + 1);
+  }
   entryObject.nextEntryId = nextEntryId;
-  entryArray.unshift(entryObject);
+  return entryObject;
 }
