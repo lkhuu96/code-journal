@@ -9,11 +9,9 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;700&family=Proza+Libre&display=swap"
     rel="stylesheet">
-  <link
-    rel="stylesheet"
-    crossorigin="anonymous"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
-    integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+  integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+  crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/layout.css">
   <link rel="stylesheet" href="css/styles.css">
@@ -40,7 +38,7 @@
             </div>
             <div class="column-half">
               <label class="no-top-margin font-700" for="title">Title</label>
-              <input class="text-boxes" type="text" name="title" required="required">
+              <input id="title" class="text-boxes" type="text" name="title" required="required">
               <label class="font-700" for="photo">Photo URL</label>
               <input id="photo" class="text-boxes" type="text" name="photo" required="required">
             </div>
@@ -48,7 +46,7 @@
           <div class="row">
             <div class="column-full">
               <label class="font-700" for="notes">Notes</label>
-              <textarea class="text-boxes" name="notes" required="required"></textarea>
+              <textarea id="notes" class="text-boxes" name="notes" required="required"></textarea>
             </div>
             <div class="column-full text-right">
               <button id="save" class="purple-bg save-button" type="submit">SAVE</button>

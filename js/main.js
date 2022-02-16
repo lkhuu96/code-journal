@@ -3,6 +3,8 @@
 
 var $photoURL = document.querySelector('#photo');
 var $img = document.querySelector('img');
+var $title = document.querySelector('#title');
+var $notes = document.querySelector('#notes');
 
 $photoURL.addEventListener('input', function (event) {
   $img.setAttribute('src', $photoURL.value);
@@ -14,15 +16,26 @@ var $entryForm = document.querySelector("div[data-view='entry-form']");
 var $entriesNav = document.querySelector('#entriesNav');
 var $entriesList = document.querySelector("div[data-view='entries']");
 var $dataView = document.querySelector('ul');
+var entry = data.entries;
+var editingIndex = null;
+var editingId = null;
 
 document.addEventListener('submit', function (event) {
   event.preventDefault();
-  if (data.entries.length === 0) {
+  if (entry.length === 0) {
     document.querySelector('p[class="text-center"]').remove();
   }
-  data.entries.unshift(saveEntry());
-  $img.setAttribute('src', 'images/placeholder-image-square.jpg');
-  $dataView.prepend(createNewElement(data.entries[0]));
+  if (data.editing === null) {
+    entry.unshift(saveEntry());
+    entry[0].entryId = data.nextEntryId;
+    data.nextEntryId++;
+    $dataView.prepend(createNewElement(entry[0]));
+  } else {
+    entry[editingIndex] = saveEntry();
+    entry[editingIndex].entryId = editingId;
+    document.querySelectorAll('li')[editingIndex].replaceWith(createNewElement(entry[editingIndex]));
+  }
+  data.editing = null;
   showEntries();
   $form.reset();
 });
@@ -41,10 +54,33 @@ document.addEventListener('click', function (event) {
     return;
   }
   if (event.target === $new) {
+    $form.reset();
+    $img.setAttribute('src', 'images/placeholder-image-square.jpg');
+    data.editing = null;
     showForm();
   } else if (event.target === $entriesNav) {
     showEntries();
   }
+});
+
+$dataView.addEventListener('click', function (event) {
+  if (event.target.tagName !== 'I') {
+    return;
+  }
+  var getLi = event.target.closest('li');
+  editingId = parseInt(getLi.getAttribute('data-entry-id'));
+  var entries = entry;
+  for (var i = 0; i < entries.length; i++) {
+    if (entries[i].entryId === editingId) {
+      data.editing = entries[i];
+      editingIndex = i;
+    }
+  }
+  showForm();
+  $title.value = data.editing.title;
+  $photoURL.value = data.editing.photoUrl;
+  $img.setAttribute('src', $photoURL.value);
+  $notes.value = data.editing.notes;
 });
 
 function saveEntry() {
@@ -52,8 +88,6 @@ function saveEntry() {
   entryObject.title = $form.elements.title.value;
   entryObject.photoUrl = $form.elements.photo.value;
   entryObject.notes = $form.elements.notes.value;
-  entryObject.entryId = data.nextEntryId;
-  data.nextEntryId++;
   return entryObject;
 }
 
@@ -64,6 +98,9 @@ function createNewElement(entry) {
   var createImgDiv = document.createElement('div');
   var createImg = document.createElement('img');
   var createTextDiv = document.createElement('div');
+  var createTitleDiv = document.createElement('div');
+  var createIconAnchor = document.createElement('a');
+  var createIcon = document.createElement('i');
   var createTitle = document.createElement('h2');
   var createNote = document.createElement('p');
 
@@ -72,24 +109,29 @@ function createNewElement(entry) {
 
   createTitle.textContent = entry.title;
   createNote.textContent = entry.notes;
-  createTextDiv.appendChild(createTitle).setAttribute('class', spacing);
+  createTitleDiv.appendChild(createTitle).setAttribute('class', spacing);
+  createIconAnchor.appendChild(createIcon).setAttribute('class', 'fa-solid fa-pen');
+  createTitleDiv.appendChild(createIconAnchor).setAttribute('class', 'absolute edit-icon');
+  createTitleDiv.appendChild(createIconAnchor).setAttribute('href', '#');
+
+  createTextDiv.appendChild(createTitleDiv).setAttribute('class', 'row relative');
   createTextDiv.appendChild(createNote).setAttribute('class', spacing);
   createRowDiv.appendChild(createTextDiv).setAttribute('class', 'column-half');
 
   createLi.appendChild(createRowDiv).setAttribute('class', 'row');
   createLi.setAttribute('class', 'b-margin');
-
+  createLi.setAttribute('data-entry-id', entry.entryId);
   return createLi;
 }
 
 function addEntriesToPage(event) {
-  if (data.entries.length === 0) {
+  if (entry.length === 0) {
     var createNote = document.createElement('p');
     createNote.textContent = 'No entries have been recorded.';
     $dataView.appendChild(createNote).setAttribute('class', 'text-center');
   }
-  for (var i = 0; i < data.entries.length; i++) {
-    var dataEntry = data.entries[i];
+  for (var i = 0; i < entry.length; i++) {
+    var dataEntry = entry[i];
     $dataView.appendChild(createNewElement(dataEntry));
   }
 }
@@ -103,5 +145,6 @@ function showForm() {
 function showEntries() {
   $entryForm.classList.add('hidden');
   $entriesList.classList.remove('hidden');
+  data.editing = null;
   data.view = 'entries';
 }
