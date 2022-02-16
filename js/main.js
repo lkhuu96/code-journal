@@ -15,12 +15,12 @@ var $entriesList = document.querySelector("div[data-view='entries']");
 var $dataView = document.querySelector('ul');
 document.addEventListener('submit', function (event) {
   event.preventDefault();
+  if (data.entries.length === 0) {
+    document.querySelector('p[class="text-center"]').remove();
+  }
   data.entries.unshift(saveEntry());
   $img.setAttribute('src', 'images/placeholder-image-square.jpg');
   $dataView.prepend(createNewElement(data.entries[0]));
-  if (data.entries.length === 1) {
-    document.querySelector('p[class="text-center"]').remove();
-  }
   showEntries();
   $form.reset();
 });
