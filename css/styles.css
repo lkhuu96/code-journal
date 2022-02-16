@@ -112,3 +112,9 @@ a {
 .absolute {
   position: absolute;
 }
+
+.edit-icon {
+  right: 0;
+  color: rgb(86, 43, 129);
+  font-size: 1.5rem;
+}

@@ -64,15 +64,26 @@ function createNewElement(entry) {
   var createImgDiv = document.createElement('div');
   var createImg = document.createElement('img');
   var createTextDiv = document.createElement('div');
+  var createTitleDiv = document.createElement('div');
+  var createIconAnchor = document.createElement('a');
+  var createIcon = document.createElement('i');
+
   var createTitle = document.createElement('h2');
   var createNote = document.createElement('p');
-
+  // creates image section
   createImgDiv.appendChild(createImg).setAttribute('src', entry.photoUrl);
   createRowDiv.appendChild(createImgDiv).setAttribute('class', 'column-half b-margin');
 
+  // creates title section
   createTitle.textContent = entry.title;
   createNote.textContent = entry.notes;
-  createTextDiv.appendChild(createTitle).setAttribute('class', spacing);
+  createTitleDiv.appendChild(createTitle).setAttribute('class', spacing);
+  createIconAnchor.appendChild(createIcon).setAttribute('class', 'fa fa-solid fa-pen');
+  createTitleDiv.appendChild(createIconAnchor).setAttribute('class', 'absolute edit-icon');
+  createTitleDiv.appendChild(createIconAnchor).setAttribute('href', '#');
+
+  // creates description paragraph
+  createTextDiv.appendChild(createTitleDiv).setAttribute('class', 'row relative');
   createTextDiv.appendChild(createNote).setAttribute('class', spacing);
   createRowDiv.appendChild(createTextDiv).setAttribute('class', 'column-half');
 
