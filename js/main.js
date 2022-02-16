@@ -48,9 +48,9 @@ document.addEventListener('click', function (event) {
 });
 
 $dataView.addEventListener('click', function (event) {
-  // if (event.target.tagName === 'I') {
-  //   console.log('I selected');
-  // }
+  if (event.target.tagName === 'I') {
+    showForm();
+  }
 });
 
 function saveEntry() {
