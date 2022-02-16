@@ -16,15 +16,21 @@ var $entryForm = document.querySelector("div[data-view='entry-form']");
 var $entriesNav = document.querySelector('#entriesNav');
 var $entriesList = document.querySelector("div[data-view='entries']");
 var $dataView = document.querySelector('ul');
-
+var currentEditingIndex = null;
 document.addEventListener('submit', function (event) {
   event.preventDefault();
   if (data.entries.length === 0) {
     document.querySelector('p[class="text-center"]').remove();
   }
-  data.entries.unshift(saveEntry());
-  $img.setAttribute('src', 'images/placeholder-image-square.jpg');
-  $dataView.prepend(createNewElement(data.entries[0]));
+  if (data.editing === null) {
+    data.entries.unshift(saveEntry());
+    data.nextEntryId++;
+    $img.setAttribute('src', 'images/placeholder-image-square.jpg');
+    $dataView.prepend(createNewElement(data.entries[0]));
+  } else {
+    data.entries[currentEditingIndex] = saveEntry();
+    $img.setAttribute('src', 'images/placeholder-image-square.jpg');
+  }
   showEntries();
   $form.reset();
 });
@@ -45,6 +51,7 @@ document.addEventListener('click', function (event) {
   if (event.target === $new) {
     $form.reset();
     $img.setAttribute('src', 'images/placeholder-image-square.jpg');
+    data.editing = null;
     showForm();
   } else if (event.target === $entriesNav) {
     showEntries();
@@ -61,6 +68,7 @@ $dataView.addEventListener('click', function (event) {
   for (var i = 0; i < data.entries.length; i++) {
     if (entries[i].entryId === parseInt(getEntryId)) {
       data.editing = entries[i];
+      currentEditingIndex = i;
     }
   }
   showForm();
@@ -76,7 +84,6 @@ function saveEntry() {
   entryObject.photoUrl = $form.elements.photo.value;
   entryObject.notes = $form.elements.notes.value;
   entryObject.entryId = data.nextEntryId;
-  data.nextEntryId++;
   return entryObject;
 }
 
