@@ -20,7 +20,6 @@ var entry = data.entries;
 var editingIndex = null;
 var editingId = null;
 
-// click save button and updates dom with current information
 document.addEventListener('submit', function (event) {
   event.preventDefault();
   if (entry.length === 0) {
@@ -50,7 +49,6 @@ document.addEventListener('DOMContentLoaded', function (event) {
   addEntriesToPage();
 });
 
-// click on entries or new and shows new view
 document.addEventListener('click', function (event) {
   if (event.target.tagName !== 'A') {
     return;
@@ -65,7 +63,6 @@ document.addEventListener('click', function (event) {
   }
 });
 
-// click on edit and fills out form with selected item
 $dataView.addEventListener('click', function (event) {
   if (event.target.tagName !== 'I') {
     return;
