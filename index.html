@@ -21,38 +21,53 @@
 <body>
   <header class="purple-bg">
     <div class="container">
-      <div class="row">
-        <div class="column-full column-half">
-          <h2 class="font-200 tb-margin-dot7">Code Journal</h2>
-        </div>
+      <div class="row align-center gap-20 column-full">
+        <h2 class="font-200 tb-margin-1">Code Journal</h2>
+        <h3 class="font-200 tb-margin-1">
+          <a id="entriesNav" href="#" class="purple-bg">Entries</a>
+        </h3>
       </div>
     </div>
   </header>
   <main>
-    <div class="container" data-view="entry-form">
-      <form>
-        <h1 class="column-full">New Entry</h1>
-        <div class="row">
-          <div class="column-half b-margin">
-            <img src="images/placeholder-image-square.jpg">
+    <div class="container">
+      <div id="entry-form" data-view="entry-form" class="hidden">
+        <form>
+          <h1 class="column-full">New Entry</h1>
+          <div class="row">
+            <div class="column-half b-margin">
+              <img src="images/placeholder-image-square.jpg">
+            </div>
+            <div class="column-half">
+              <label class="no-top-margin font-700" for="title">Title</label>
+              <input class="text-boxes" type="text" name="title" required="required">
+              <label class="font-700" for="photo">Photo URL</label>
+              <input id="photo" class="text-boxes" type="text" name="photo" required="required">
+            </div>
           </div>
-          <div class="column-half">
-            <label class="no-top-margin font-700" for="title">Title</label>
-            <input class="text-boxes" type="text" name="title" required="required">
-            <label class="font-700" for="photo">Photo URL</label>
-            <input id="photo" class="text-boxes" type="text" name="photo" required="required">
+          <div class="row">
+            <div class="column-full">
+              <label class="font-700" for="notes">Notes</label>
+              <textarea class="text-boxes" name="notes" required="required"></textarea>
+            </div>
+            <div class="column-full text-right">
+              <button id="save" class="purple-bg save-button" type="submit">SAVE</button>
+            </div>
           </div>
-        </div>
-        <div class="row">
+        </form>
+      </div>
+      <div data-view="entries">
+        <div class="row relative align-center">
           <div class="column-full">
-            <label class="font-700" for="notes">Notes</label>
-            <textarea class="text-boxes" name="notes" required="required"></textarea>
+            <h1>Entries</h1>
           </div>
-          <div class="column-full text-right">
-            <button class="purple-bg save-button" type="submit">SAVE</button>
+          <div class="column-full text-right absolute">
+            <a id="new" class="save-button purple-bg" href="#">New</a>
           </div>
         </div>
-      </form>
+        <ul></ul>
+      </div>
+    </div>
     </div>
   </main>
   <script src="js/data.js"></script>

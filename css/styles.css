@@ -21,15 +21,29 @@ input:focus {
 }
 
 img {
+  object-position: center;
   object-fit: cover;
   width: 100%;
-  max-height: 350px;
+  height: 350px;
 }
 
 label {
   display: inline-block;
   margin-bottom: 0.5rem;
   margin-top: 1.5rem;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+p {
+  white-space: pre-line;
+}
+
+a {
+  text-decoration: none;
 }
 
 .font-200 {
@@ -49,8 +63,12 @@ label {
   text-align: right;
 }
 
-.tb-margin-dot7 {
-  margin: 0.7rem 0;
+.text-center {
+  text-align: center;
+}
+
+.tb-margin-1 {
+  margin: 1rem 0;
 }
 
 .b-margin {
@@ -76,4 +94,21 @@ label {
   padding: 0.5rem 1.2rem;
   font-size: 1rem;
   margin: 1rem 0;
+  cursor: pointer;
+}
+
+.align-center {
+  align-items: center;
+}
+
+.gap-20 {
+  column-gap: 20px;
+}
+
+.relative {
+  position: relative;
+}
+
+.absolute {
+  position: absolute;
 }
