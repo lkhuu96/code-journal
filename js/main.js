@@ -37,6 +37,9 @@ document.addEventListener('DOMContentLoaded', function (event) {
 });
 
 document.addEventListener('click', function (event) {
+  if (event.target.tagName !== 'A') {
+    return;
+  }
   if (event.target === $new) {
     showForm();
   } else if (event.target === $entriesNav) {
