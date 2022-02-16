@@ -32,10 +32,9 @@ document.addEventListener('submit', function (event) {
     data.nextEntryId++;
     $dataView.prepend(createNewElement(entry[0]));
   } else {
-    var objectUpdate = entry[editingIndex];
-    objectUpdate = saveEntry();
-    objectUpdate.entryId = editingId;
-    document.querySelectorAll('li')[editingIndex].replaceWith(createNewElement(objectUpdate));
+    entry[editingIndex] = saveEntry();
+    entry[editingIndex].entryId = editingId;
+    document.querySelectorAll('li')[editingIndex].replaceWith(createNewElement(entry[editingIndex]));
   }
   data.editing = null;
   showEntries();
