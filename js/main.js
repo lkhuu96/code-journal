@@ -3,6 +3,8 @@
 
 var $photoURL = document.querySelector('#photo');
 var $img = document.querySelector('img');
+var $title = document.querySelector('#title');
+var $notes = document.querySelector('#notes');
 
 $photoURL.addEventListener('input', function (event) {
   $img.setAttribute('src', $photoURL.value);
@@ -41,6 +43,8 @@ document.addEventListener('click', function (event) {
     return;
   }
   if (event.target === $new) {
+    $form.reset();
+    $img.setAttribute('src', 'images/placeholder-image-square.jpg');
     showForm();
   } else if (event.target === $entriesNav) {
     showEntries();
@@ -48,6 +52,9 @@ document.addEventListener('click', function (event) {
 });
 
 $dataView.addEventListener('click', function (event) {
+  if (event.target.tagName !== 'I') {
+    return;
+  }
   var getLi = event.target.closest('li');
   var getEntryId = getLi.getAttribute('data-entry-id');
   var entries = data.entries;
@@ -56,11 +63,11 @@ $dataView.addEventListener('click', function (event) {
       data.editing = entries[i];
     }
   }
-  if (event.target.tagName === 'I') {
-    // showForm();
-    // found index of selected item. need to put object values into form
-
-  }
+  showForm();
+  $title.value = data.editing.title;
+  $photoURL.value = data.editing.photoUrl;
+  $img.setAttribute('src', $photoURL.value);
+  $notes.value = data.editing.notes;
 });
 
 function saveEntry() {
