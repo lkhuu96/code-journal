@@ -89,7 +89,7 @@ function createNewElement(entry) {
 
   createLi.appendChild(createRowDiv).setAttribute('class', 'row');
   createLi.setAttribute('class', 'b-margin');
-
+  createLi.setAttribute('data-entry-id', entry.entryId);
   return createLi;
 }
 
