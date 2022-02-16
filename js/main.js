@@ -47,6 +47,12 @@ document.addEventListener('click', function (event) {
   }
 });
 
+$dataView.addEventListener('click', function (event) {
+  // if (event.target.tagName === 'I') {
+  //   console.log('I selected');
+  // }
+});
+
 function saveEntry() {
   var entryObject = {};
   entryObject.title = $form.elements.title.value;
