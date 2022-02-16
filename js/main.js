@@ -19,7 +19,7 @@ document.addEventListener('submit', function (event) {
   $img.setAttribute('src', 'images/placeholder-image-square.jpg');
   $dataView.prepend(createNewElement(data.entries[0]));
   if (data.entries.length === 1) {
-    document.querySelector('#no-content').remove();
+    document.querySelector('p[class="text-center"]').remove();
   }
   showEntries();
   $form.reset();
@@ -39,7 +39,6 @@ document.addEventListener('click', function (event) {
     showForm();
   } else if (event.target === $entriesNav) {
     showEntries();
-    $form.reset();
   }
 });
 
@@ -86,7 +85,6 @@ function addEntriesToPage(event) {
     var createNote = document.createElement('p');
     createNote.textContent = 'No entries have been recorded';
     $dataView.appendChild(createNote).setAttribute('class', 'text-center');
-    $dataView.appendChild(createNote).setAttribute('id', 'no-content');
   } else {
     for (var i = 0; i < data.entries.length; i++) {
       var dataEntry = data.entries[i];
