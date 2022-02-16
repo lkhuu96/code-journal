@@ -3,6 +3,7 @@
 
 var $photoURL = document.querySelector('#photo');
 var $img = document.querySelector('img');
+
 $photoURL.addEventListener('input', function (event) {
   $img.setAttribute('src', $photoURL.value);
 });
@@ -13,6 +14,7 @@ var $entryForm = document.querySelector("div[data-view='entry-form']");
 var $entriesNav = document.querySelector('#entriesNav');
 var $entriesList = document.querySelector("div[data-view='entries']");
 var $dataView = document.querySelector('ul');
+
 document.addEventListener('submit', function (event) {
   event.preventDefault();
   if (data.entries.length === 0) {
@@ -62,14 +64,11 @@ function createNewElement(entry) {
   var createTitle = document.createElement('h2');
   var createNote = document.createElement('p');
 
-  var imgSrc = entry.photoUrl;
-  createImgDiv.appendChild(createImg).setAttribute('src', imgSrc);
+  createImgDiv.appendChild(createImg).setAttribute('src', entry.photoUrl);
   createRowDiv.appendChild(createImgDiv).setAttribute('class', 'column-half b-margin');
 
-  var title = entry.title;
-  createTitle.textContent = title;
-  var note = entry.notes;
-  createNote.textContent = note;
+  createTitle.textContent = entry.title;
+  createNote.textContent = entry.notes;
   createTextDiv.appendChild(createTitle).setAttribute('class', spacing);
   createTextDiv.appendChild(createNote).setAttribute('class', spacing);
   createRowDiv.appendChild(createTextDiv).setAttribute('class', 'column-half');
@@ -83,13 +82,12 @@ function createNewElement(entry) {
 function addEntriesToPage(event) {
   if (data.entries.length === 0) {
     var createNote = document.createElement('p');
-    createNote.textContent = 'No entries have been recorded';
+    createNote.textContent = 'No entries have been recorded.';
     $dataView.appendChild(createNote).setAttribute('class', 'text-center');
-  } else {
-    for (var i = 0; i < data.entries.length; i++) {
-      var dataEntry = data.entries[i];
-      $dataView.appendChild(createNewElement(dataEntry));
-    }
+  }
+  for (var i = 0; i < data.entries.length; i++) {
+    var dataEntry = data.entries[i];
+    $dataView.appendChild(createNewElement(dataEntry));
   }
 }
 
