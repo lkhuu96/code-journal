@@ -48,8 +48,18 @@ document.addEventListener('click', function (event) {
 });
 
 $dataView.addEventListener('click', function (event) {
+  var getLi = event.target.closest('li');
+  var getEntryId = getLi.getAttribute('data-entry-id');
+  var entries = data.entries;
+  for (var i = 0; i < data.entries.length; i++) {
+    if (entries[i].entryId === parseInt(getEntryId)) {
+      data.editing = entries[i];
+    }
+  }
   if (event.target.tagName === 'I') {
-    showForm();
+    // showForm();
+    // found index of selected item. need to put object values into form
+
   }
 });
 
