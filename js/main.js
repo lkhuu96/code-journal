@@ -16,21 +16,28 @@ var $entryForm = document.querySelector("div[data-view='entry-form']");
 var $entriesNav = document.querySelector('#entriesNav');
 var $entriesList = document.querySelector("div[data-view='entries']");
 var $dataView = document.querySelector('ul');
-var currentEditingIndex = null;
+var entry = data.entries;
+var editingIndex = null;
+var editingId = null;
+
+// click save button and updates dom with current information
 document.addEventListener('submit', function (event) {
   event.preventDefault();
-  if (data.entries.length === 0) {
+  if (entry.length === 0) {
     document.querySelector('p[class="text-center"]').remove();
   }
   if (data.editing === null) {
-    data.entries.unshift(saveEntry());
+    entry.unshift(saveEntry());
+    entry[0].entryId = data.nextEntryId;
     data.nextEntryId++;
-    $img.setAttribute('src', 'images/placeholder-image-square.jpg');
-    $dataView.prepend(createNewElement(data.entries[0]));
+    $dataView.prepend(createNewElement(entry[0]));
   } else {
-    data.entries[currentEditingIndex] = saveEntry();
-    $img.setAttribute('src', 'images/placeholder-image-square.jpg');
+    var objectUpdate = entry[editingIndex];
+    objectUpdate = saveEntry();
+    objectUpdate.entryId = editingId;
+    document.querySelectorAll('li')[editingIndex].replaceWith(createNewElement(objectUpdate));
   }
+  data.editing = null;
   showEntries();
   $form.reset();
 });
@@ -44,6 +51,7 @@ document.addEventListener('DOMContentLoaded', function (event) {
   addEntriesToPage();
 });
 
+// click on entries or new and shows new view
 document.addEventListener('click', function (event) {
   if (event.target.tagName !== 'A') {
     return;
@@ -58,17 +66,18 @@ document.addEventListener('click', function (event) {
   }
 });
 
+// click on edit and fills out form with selected item
 $dataView.addEventListener('click', function (event) {
   if (event.target.tagName !== 'I') {
     return;
   }
   var getLi = event.target.closest('li');
-  var getEntryId = getLi.getAttribute('data-entry-id');
-  var entries = data.entries;
-  for (var i = 0; i < data.entries.length; i++) {
-    if (entries[i].entryId === parseInt(getEntryId)) {
+  editingId = parseInt(getLi.getAttribute('data-entry-id'));
+  var entries = entry;
+  for (var i = 0; i < entries.length; i++) {
+    if (entries[i].entryId === editingId) {
       data.editing = entries[i];
-      currentEditingIndex = i;
+      editingIndex = i;
     }
   }
   showForm();
@@ -83,7 +92,6 @@ function saveEntry() {
   entryObject.title = $form.elements.title.value;
   entryObject.photoUrl = $form.elements.photo.value;
   entryObject.notes = $form.elements.notes.value;
-  entryObject.entryId = data.nextEntryId;
   return entryObject;
 }
 
@@ -97,22 +105,19 @@ function createNewElement(entry) {
   var createTitleDiv = document.createElement('div');
   var createIconAnchor = document.createElement('a');
   var createIcon = document.createElement('i');
-
   var createTitle = document.createElement('h2');
   var createNote = document.createElement('p');
-  // creates image section
+
   createImgDiv.appendChild(createImg).setAttribute('src', entry.photoUrl);
   createRowDiv.appendChild(createImgDiv).setAttribute('class', 'column-half b-margin');
 
-  // creates title section
   createTitle.textContent = entry.title;
   createNote.textContent = entry.notes;
   createTitleDiv.appendChild(createTitle).setAttribute('class', spacing);
-  createIconAnchor.appendChild(createIcon).setAttribute('class', 'fa fa-solid fa-pen');
+  createIconAnchor.appendChild(createIcon).setAttribute('class', 'fa-solid fa-pen');
   createTitleDiv.appendChild(createIconAnchor).setAttribute('class', 'absolute edit-icon');
   createTitleDiv.appendChild(createIconAnchor).setAttribute('href', '#');
 
-  // creates description paragraph
   createTextDiv.appendChild(createTitleDiv).setAttribute('class', 'row relative');
   createTextDiv.appendChild(createNote).setAttribute('class', spacing);
   createRowDiv.appendChild(createTextDiv).setAttribute('class', 'column-half');
@@ -124,13 +129,13 @@ function createNewElement(entry) {
 }
 
 function addEntriesToPage(event) {
-  if (data.entries.length === 0) {
+  if (entry.length === 0) {
     var createNote = document.createElement('p');
     createNote.textContent = 'No entries have been recorded.';
     $dataView.appendChild(createNote).setAttribute('class', 'text-center');
   }
-  for (var i = 0; i < data.entries.length; i++) {
-    var dataEntry = data.entries[i];
+  for (var i = 0; i < entry.length; i++) {
+    var dataEntry = entry[i];
     $dataView.appendChild(createNewElement(dataEntry));
   }
 }
@@ -144,5 +149,6 @@ function showForm() {
 function showEntries() {
   $entryForm.classList.add('hidden');
   $entriesList.classList.remove('hidden');
+  data.editing = null;
   data.view = 'entries';
 }
