@@ -100,7 +100,12 @@ $confirmCancel.addEventListener('click', function (event) {
 
 $confirmDelete.addEventListener('click', function (event) {
   event.preventDefault();
+  hideDelete();
+  showEntries();
+  data.editing = null;
   document.querySelectorAll('li')[editingIndex].remove();
+  data.entries.splice(editingIndex, 1);
+  $form.reset();
 });
 
 function saveEntry() {
