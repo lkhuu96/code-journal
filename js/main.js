@@ -16,6 +16,7 @@ var $entryForm = document.querySelector("div[data-view='entry-form']");
 var $entriesNav = document.querySelector('#entriesNav');
 var $entriesList = document.querySelector("div[data-view='entries']");
 var $dataView = document.querySelector('ul');
+var $deleteButton = document.querySelector('#delete-button');
 var entry = data.entries;
 var editingIndex = null;
 var editingId = null;
@@ -76,6 +77,7 @@ $dataView.addEventListener('click', function (event) {
       editingIndex = i;
     }
   }
+  showDelete();
   showForm();
   $title.value = data.editing.title;
   $photoURL.value = data.editing.photoUrl;
@@ -145,6 +147,15 @@ function showForm() {
 function showEntries() {
   $entryForm.classList.add('hidden');
   $entriesList.classList.remove('hidden');
+  hideDelete();
   data.editing = null;
   data.view = 'entries';
+}
+
+function showDelete() {
+  $deleteButton.classList.remove('hidden');
+}
+
+function hideDelete() {
+  $deleteButton.classList.add('hidden');
 }
