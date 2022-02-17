@@ -119,3 +119,32 @@ a {
   color: rgb(86, 43, 129);
   font-size: 1.5rem;
 }
+
+.dark-bg {
+  background-color: rgba(0, 0, 0, 0.397);
+  position: fixed;
+}
+
+.center {
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+}
+
+.space-between {
+  justify-content: space-between;
+}
+
+.confirm-popup {
+  background-color: rgb(255, 255, 255);
+  height: 150px;
+  width: 400px;
+  padding: 1rem;
+}
+
+.red-bg {
+  background-color: rgb(220, 38, 38);
+}

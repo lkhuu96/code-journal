@@ -17,6 +17,7 @@ var $entriesNav = document.querySelector('#entriesNav');
 var $entriesList = document.querySelector("div[data-view='entries']");
 var $dataView = document.querySelector('ul');
 var $deleteButton = document.querySelector('#delete-button');
+var $confirmDelete = document.querySelector('#confirm-delete');
 var entry = data.entries;
 var editingIndex = null;
 var editingId = null;
@@ -83,6 +84,11 @@ $dataView.addEventListener('click', function (event) {
   $photoURL.value = data.editing.photoUrl;
   $img.setAttribute('src', $photoURL.value);
   $notes.value = data.editing.notes;
+});
+
+$deleteButton.addEventListener('click', function (event) {
+  event.preventDefault();
+  $confirmDelete.classList.remove('hidden');
 });
 
 function saveEntry() {

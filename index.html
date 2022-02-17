@@ -49,8 +49,8 @@
               <textarea id="notes" class="text-boxes" name="notes" required="required"></textarea>
             </div>
           </div>
-          <div class="row relative align-center">
-            <div id="delete-button" class="column-full absolute">
+          <div class="row align-center relative">
+            <div id="delete-button" class="column-half absolute">
               <button>Delete Entry</button>
             </div>
             <div class="column-full text-right">
@@ -58,6 +58,15 @@
             </div>
           </div>
         </form>
+        <div id="confirm-delete" class="row center dark-bg hidden">
+          <div class="center confirm-popup">
+            <p>Are you sure you want to delete this entry?</p>
+            <div class="row space-between align-center">
+              <button class="save-button">CANCEL</button>
+              <button class="save-button red-bg" type="submit">CONFIRM</button>
+            </div>
+          </div>
+        </div>
       </div>
       <div data-view="entries">
         <div class="row relative align-center">
