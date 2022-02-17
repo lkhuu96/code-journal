@@ -17,7 +17,9 @@ var $entriesNav = document.querySelector('#entriesNav');
 var $entriesList = document.querySelector("div[data-view='entries']");
 var $dataView = document.querySelector('ul');
 var $deleteButton = document.querySelector('#delete-button');
+var $confirmPopup = document.querySelector('#confirm-popup');
 var $confirmDelete = document.querySelector('#confirm-delete');
+var $confirmCancel = document.querySelector('#cancel');
 var entry = data.entries;
 var editingIndex = null;
 var editingId = null;
@@ -88,7 +90,17 @@ $dataView.addEventListener('click', function (event) {
 
 $deleteButton.addEventListener('click', function (event) {
   event.preventDefault();
-  $confirmDelete.classList.remove('hidden');
+  $confirmPopup.classList.remove('hidden');
+});
+
+$confirmCancel.addEventListener('click', function (event) {
+  event.preventDefault();
+  $confirmPopup.classList.add('hidden');
+});
+
+$confirmDelete.addEventListener('click', function (event) {
+  event.preventDefault();
+  document.querySelectorAll('li')[editingIndex].remove();
 });
 
 function saveEntry() {
