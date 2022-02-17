@@ -102,6 +102,7 @@ $confirmDelete.addEventListener('click', function (event) {
   event.preventDefault();
   hideDelete();
   showEntries();
+  $confirmPopup.classList.add('hidden');
   data.editing = null;
   document.querySelectorAll('li')[editingIndex].remove();
   data.entries.splice(editingIndex, 1);
